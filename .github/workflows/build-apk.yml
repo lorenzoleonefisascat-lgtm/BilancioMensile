@@ -36,16 +36,14 @@ jobs:
       - name: Build unsigned release APK
         run: gradle --no-daemon :app:assembleRelease
 
-      - name: Collect release signing tools
+      - name: Align unsigned release and collect signer
         shell: bash
         run: |
           mkdir -p release-tools
-          cp app/build/outputs/apk/release/app-release-unsigned.apk release-tools/
-          cp "$ANDROID_HOME/build-tools/35.0.0/zipalign" release-tools/
+          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -f -p 4             app/build/outputs/apk/release/app-release-unsigned.apk             release-tools/BilancioMensile-1.0.0-aligned-unsigned.apk
           cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" release-tools/
-          chmod +x release-tools/zipalign
 
-      - name: Upload unsigned release and signing tools
+      - name: Upload aligned release and signer
         uses: actions/upload-artifact@v4
         with:
           name: BilancioMensile-release-tools
