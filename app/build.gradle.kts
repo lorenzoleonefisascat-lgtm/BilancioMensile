@@ -10,7 +10,13 @@ android {
         applicationId = "it.bilanciomensile.app"
         minSdk = 24
         targetSdk = 35
-        versionCode = 3
-        versionName = "3.0"
+        versionCode = 100
+        versionName = "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+        }
     }
 }
