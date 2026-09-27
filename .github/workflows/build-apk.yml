@@ -40,13 +40,13 @@ jobs:
         shell: bash
         run: |
           mkdir -p release-tools
-          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -f -p 4             app/build/outputs/apk/release/app-release-unsigned.apk             release-tools/BilancioMensile-1.0.0-aligned-unsigned.apk
+          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -f -p 4             app/build/outputs/apk/release/app-release-unsigned.apk             release-tools/BilancioMensile-1.1.0-aligned-unsigned.apk
           cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" release-tools/
 
       - name: Upload aligned release and signer
         uses: actions/upload-artifact@v4
         with:
-          name: BilancioMensile-release-tools
+          name: BilancioMensile-1.1.0-release-tools
           path: release-tools/
           if-no-files-found: error
           retention-days: 1
